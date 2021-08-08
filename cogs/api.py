@@ -586,39 +586,6 @@ Date Of Release Not Found""", inline = False)
         embed.set_footer(text = f'Requested by {ctx.author}', icon_url = ctx.author.avatar_url)
         await ctx.channel.send(embed=embed)
 
-    @commands.command()
-    async def covid19(self, ctx, country):
-        #need to move it to webscrape.py
-        covid19_link = requests.get(f'https://www.worldometers.info/coronavirus/country/{country}/')
-        soup = BeautifulSoup(covid19_link.content, features="html.parser")
-        cases = (soup.find("div",attrs={"class":"maincounter-number"}).text)
-        ct= soup.findAll("div", {"class" : "maincounter-number"})
-        cte= ct[1]
-        recovery = ct[2]
-        recoveries = recovery.text
-        deaths = (cte.text)
-        embed=discord.Embed(title=(f'Covid 19 cases in {country}'), description=(cases))
-        embed.add_field(name='Number Of Deaths', value=(deaths))
-        embed.add_field(name='Number Of Recoveries', value=(recoveries))
-        embed.add_field(name="For more info, visit", value=(f'https://www.worldometers.info/coronavirus/country/{country}/'), inline=False)
-        await ctx.channel.send(embed=embed)
-
-    @commands.command()
-    async def covid19world(self, ctx):
-        #need to move it to webscrape.py
-        covid19_link = requests.get('https://www.worldometers.info/coronavirus/')
-        soup = BeautifulSoup(covid19_link.content, features="html.parser")
-        cases = (soup.find("div",attrs={"class":"maincounter-number"}).text)
-        ct= soup.findAll("div", {"class" : "maincounter-number"})
-        cte= ct[1]
-        recovery = ct[2]
-        recoveries = recovery.text
-        deaths = (cte.text)
-        embed=discord.Embed(title=('Covid 19 cases in the world'), description=(cases))
-        embed.add_field(name='Number Of Deaths', value=(deaths))
-        embed.add_field(name='Number Of Recoveries', value=(recoveries))
-        await ctx.channel.send(embed=embed)
-
     @commands.command(aliases=['cc'])
     async def currencyconvert(self, ctx, country1, country2, value):
         try:
