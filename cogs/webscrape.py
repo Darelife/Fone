@@ -48,7 +48,38 @@ class search(commands.Cog):
         await ctx.reply(embed=embed)
       except:
         await ctx.reply('Couldnt find the word on the Urban dictionary')
+        
+    @commands.command()
+    async def covid19(self, ctx, country):
+        covid19_link = requests.get(f'https://www.worldometers.info/coronavirus/country/{country}/')
+        soup = BeautifulSoup(covid19_link.content, features="html.parser")
+        cases = (soup.find("div",attrs={"class":"maincounter-number"}).text)
+        ct= soup.findAll("div", {"class" : "maincounter-number"})
+        cte= ct[1]
+        recovery = ct[2]
+        recoveries = recovery.text
+        deaths = (cte.text)
+        embed=discord.Embed(title=(f'Covid 19 cases in {country}'), description=(cases))
+        embed.add_field(name='Number Of Deaths', value=(deaths))
+        embed.add_field(name='Number Of Recoveries', value=(recoveries))
+        embed.add_field(name="For more info, visit", value=(f'https://www.worldometers.info/coronavirus/country/{country}/'), inline=False)
+        await ctx.channel.send(embed=embed)
 
+    @commands.command()
+    async def covid19world(self, ctx):
+        covid19_link = requests.get('https://www.worldometers.info/coronavirus/')
+        soup = BeautifulSoup(covid19_link.content, features="html.parser")
+        cases = (soup.find("div",attrs={"class":"maincounter-number"}).text)
+        ct= soup.findAll("div", {"class" : "maincounter-number"})
+        cte= ct[1]
+        recovery = ct[2]
+        recoveries = recovery.text
+        deaths = (cte.text)
+        embed=discord.Embed(title=('Covid 19 cases in the world'), description=(cases))
+        embed.add_field(name='Number Of Deaths', value=(deaths))
+        embed.add_field(name='Number Of Recoveries', value=(recoveries))
+        await ctx.channel.send(embed=embed)
+        
     @commands.command()
     #an ncert command, only for class 11 tho...too lazy to make it for other classes
     #if your school isn't affiliated by the Central Board of Secondary Education (CBSE), ncert books are the books published by the it in india and you don't need to worry about it
