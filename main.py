@@ -58,6 +58,7 @@ async def on_command_error(ctx, error):
         
 #date1 = (str(f"{today.day}-{today.month}"))
 
+#sorry by i had copied this command's code from somewhere becuz i was too lazy to write this thing....it's easy tho...if i get time, i'll make my own version of this and upload it...i can't remember the source rn
 @client.command(case_insensitive = True, aliases = ["remind", "remindme", "remind_me"])
 @commands.bot_has_permissions(attach_files = True, embed_links = True)
 async def reminder(ctx, time, *, reminder):
