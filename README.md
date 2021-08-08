@@ -1,5 +1,5 @@
 # Fone
-It's a cool discord bot with a large variety of commands
+It's a cool discord bot with a lot of commands
 
 The bot i created was run using replit.com
 
