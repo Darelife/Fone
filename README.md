@@ -15,4 +15,5 @@ The bot attempts to predict your age by the popularity of your name
 - Bored
 
 *I need to add more stuff to this readme file....feeling kinda lazy rn...i'll add it when i get time*
+
 Thank you 
